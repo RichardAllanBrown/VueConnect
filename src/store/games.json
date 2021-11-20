@@ -1,5 +1,6 @@
 [
     {
+        "id": "1",
         "name": "Game 1",
         "groups": [
             { "connection": "Pork products", "words": [ "Lechon", "Bacon", "Speck", "Prosciutto" ] },
@@ -9,6 +10,7 @@
         ]
     },
     {
+        "id": "2",
         "name": "Game 2",
         "groups": [
             { "connection": "Terms for Zero", "words": [ "Love", "Goose-Egg", "Zip", "Nil" ] },

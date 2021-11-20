@@ -1,10 +1,12 @@
 import { InjectionKey } from "vue";
 import { createStore, useStore as baseUseStore, Store, createLogger } from "vuex";
 import { flatMap, map, find, filter, shuffle, every, sortBy, partition, concat } from "lodash-es";
+import gameDefinitions from './games.json';
 
 const debug = process.env.NODE_ENV !== 'production'
 
 export interface GameDefinition {
+    id: string,
     name: string,
     groups: Array<{ connection: string, words: Array<string> }>,
 }
@@ -24,13 +26,14 @@ export interface WordInGame {
 export enum GameState {
     NotStarted,
     Playing,
-    Locked,
+    Failed,
     Success,
+    End
 }
 
 export interface State {
     gameDefinitions: Array<GameDefinition>,
-    activeGameId: number|null,
+    activeGameId: string|null,
     activeGame: Array<WordInGame>,
     lives: number,
     foundGroups: number,
@@ -40,15 +43,7 @@ export interface State {
 export const key: InjectionKey<Store<State>> = Symbol()
 
 const state = () => ({
-    gameDefinitions: [{
-        name: 'Game 1',
-        groups: [
-            { connection: 'Pork products', words: [ 'Lechon', 'Bacon', 'Speck', 'Prosciutto' ] },
-            { connection: 'Terms in backgammon', words: [ 'Bear off', 'Gammon', 'Pip', 'Anchor' ] },
-            { connection: 'Small amount', words: [ 'Trace', 'Morsel', 'Smidgen', 'Iota' ] },
-            { connection: 'End with a silent letter', words: [ 'Coup', 'Debris', 'Autumn', 'Crumb' ] }
-        ]
-    }],
+    gameDefinitions,
     activeGameId: null,
     activeGame: [],
     lives: 3,
@@ -71,8 +66,11 @@ const actions = {
 }
 
 const mutations = {
-    loadDefinedGame (state: State, id: number) {
-        const game = state.gameDefinitions[id]
+    loadDefinedGame (state: State, id: string) {
+        const game = find(state.gameDefinitions, { id }) as GameDefinition
+        if (game == null) {
+            throw Error(`Cannot load game with id {id}`)
+        }
 
         const wordsInGame = flatMap(game.groups, (g, groupId) => {
             return map(g.words, (word) => {
@@ -84,6 +82,9 @@ const mutations = {
         state.activeGameId = id
         state.lives = 3
         state.foundGroups = 0
+        state.gameState = GameState.NotStarted
+    },
+    startGame (state: State) {
         state.gameState = GameState.Playing
     },
     toggleWord (state: State, word: string) {
@@ -108,6 +109,7 @@ const mutations = {
                     if (3 <= state.foundGroups) {
                         state.foundGroups = 4
                         state.activeGame.forEach((word) => word.wordState = WordInGameState.Locked)
+                        state.gameState = GameState.Success
                     }
                 } else {
                     currentGroup.forEach((word) => word.wordState = WordInGameState.Open)
@@ -117,7 +119,7 @@ const mutations = {
                         state.lives -= 1
 
                         if (state.lives <= 0) {
-                            state.gameState = GameState.Locked
+                            state.gameState = GameState.Failed
                         }
                     }
                 }

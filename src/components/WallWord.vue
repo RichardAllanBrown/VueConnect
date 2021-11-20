@@ -1,14 +1,13 @@
 <template>
-    <div class="text-xl h-32 m-4 flex items-center justify-center" 
+    <div class="text-xl h-32 m-4 flex items-center justify-center rounded" 
         :class="backgroundColorClass">            
-            <span>{{ word }}</span>
-    </div>
-    
+            <span v-if="gameStarted">{{ word }}</span>
+    </div>    
 </template>
 
 <script lang="ts">
-    import { defineComponent } from 'vue'
-    import { WordInGameState } from '../store';
+    import { defineComponent, computed } from 'vue'
+    import { WordInGameState, GameState, useStore } from '../store';
 
     const selectedColourClass = "bg-red-200";
     const lockedColourClasses = ["bg-blue-300", "bg-violet-300", "bg-pink-300", "bg-amber-300"];
@@ -20,6 +19,15 @@
             word: String,
             state: Number,
             groupId: Number,
+        },
+        setup () {
+            const store = useStore()
+
+            const gameStarted = computed(() => store.state.gameState != GameState.NotStarted)
+
+            return {
+                gameStarted
+            }
         },
         computed: {
             backgroundColorClass () {

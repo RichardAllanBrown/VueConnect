@@ -5,7 +5,8 @@
         <p>A simple replica of the wall from only connect. Select a wall and try to solve it before the time runs out.</p>
         <ul class="list-disc">
             <li v-for="w in walls">
-                <router-link class="no-underline hover:underline text-purple-600" to="/wall">{{ w.name }}</router-link>
+                <router-link class="no-underline hover:underline text-purple-600" 
+                            :to="{ name: 'wall', params: { wallId: w.id } }">{{ w.name }}</router-link>
             </li>
         </ul>
     </div>

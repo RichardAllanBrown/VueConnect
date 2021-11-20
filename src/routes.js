@@ -4,8 +4,8 @@ import HomePage from './components/pages/HomePage.vue'
 import WallPage from './components/pages/WallPage.vue'
 
 const routes = [
-    { path: '/', component: HomePage },
-    { path: '/wall', component: WallPage }
+    { name: "home", path: '/', component: HomePage },
+    { name: "wall", path: '/wall/:wallId', component: WallPage, props: true }
 ]
 
 export default createRouter({
