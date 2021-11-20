@@ -1,0 +1,20 @@
+[
+    {
+        "name": "Game 1",
+        "groups": [
+            { "connection": "Pork products", "words": [ "Lechon", "Bacon", "Speck", "Prosciutto" ] },
+            { "connection": "Terms in backgammon", "words": [ "Bear off", "Gammon", "Pip", "Anchor" ] },
+            { "connection": "Small amount", "words": [ "Trace", "Morsel", "Smidgen", "Iota" ] },
+            { "connection": "End with a silent letter", "words": [ "Coup", "Debris", "Autumn", "Crumb" ] }
+        ]
+    },
+    {
+        "name": "Game 2",
+        "groups": [
+            { "connection": "Terms for Zero", "words": [ "Love", "Goose-Egg", "Zip", "Nil" ] },
+            { "connection": "Poker Terms", "words": [ "Crab", "Deuce", "Bullet", "Cowboy" ] },
+            { "connection": "Flying ____", "words": [ "Ace", "Buttress", "Fish", "Fox" ] },
+            { "connection": "Things made of rubber", "words": [ "Elastic Band", "Squash Ball", "Puck", "Condom" ] }
+        ]
+    }
+]
