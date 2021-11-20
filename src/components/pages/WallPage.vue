@@ -4,15 +4,16 @@
         <h1 class="text-3xl m-4">Time to solve the wall</h1>
         <p class="m-4">Find the related groups of 4 items before the time runs out</p>
 
-        <div class="grid grid-cols-4">
+        <transition-group class="grid grid-cols-4" name="wall-word" tag="div">
             <WallWord v-for="w in orderedGameWords" 
-                 :key="w.word" 
-                 :word="w.word" 
-                 :state="w.wordState"
-                 :groupId="w.groupId"
-                 @click="toggleWord(w.word)">
+                :key="w.word" 
+                :word="w.word" 
+                :state="w.wordState"
+                :groupId="w.groupId"
+                @click="toggleWord(w.word)">
             </WallWord>
-        </div>
+        </transition-group>
+
         <div class="grid grid-cols-4">
             <div class="col-span-4" v-if="gameNotStarted">
                 <div class="m-4">
@@ -42,10 +43,11 @@
             </template>
             <template v-if="gameWon">
                 <div class="col-span-4">
-                    <p class="m-4">Congratulations! You have solved the wall. But what were the groups?</p>
+                    <p class="m-4">Congratulations! You have solved the wall. What are the groups?</p>
                 </div>
             </template>
         </div>
+
         <WallGroups v-if="showGroups"></WallGroups>
     </div>
 </template>
@@ -100,3 +102,9 @@
         }
     })
 </script>
+
+<style>
+    .wall-word-move {
+        transition: transform 0.8s ease;
+    }
+</style>
