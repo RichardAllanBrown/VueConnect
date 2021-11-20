@@ -27,8 +27,7 @@ export enum GameState {
     NotStarted,
     Playing,
     Failed,
-    Success,
-    End
+    Success
 }
 
 export interface State {
@@ -38,9 +37,26 @@ export interface State {
     lives: number,
     foundGroups: number,
     gameState: GameState,
+    timeLeft: number,
+    showGroups: boolean,
 }
 
 export const key: InjectionKey<Store<State>> = Symbol()
+
+var timerInterval = null;
+
+const startTimer = () => {
+    timerInterval = setInterval(() => {
+        store.commit('decrementTimer')
+    }, 1000)
+}
+
+const clearTimer = () => {
+    if (timerInterval != null) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+    }
+}
 
 const state = () => ({
     gameDefinitions,
@@ -49,6 +65,8 @@ const state = () => ({
     lives: 3,
     foundGroups: 0,
     gameState: GameState.NotStarted,
+    timeLeft: 0,
+    showGroups: false,
 })
 
 const getters = {
@@ -59,6 +77,15 @@ const getters = {
     showLivesLeft (state: State) : boolean {
         return 2 <= state.foundGroups
     },
+    groups (state: State) {
+        if (state.activeGameId == null) {
+            return [];
+        }
+        const gameDefinition = find(state.gameDefinitions, { id: state.activeGameId }) as GameDefinition
+        return map([0, 1, 2, 3], (groupId) => { 
+            return { groupId, name: gameDefinition.groups[groupId].connection }
+        })
+    }
 }
 
 const actions = {
@@ -78,14 +105,27 @@ const mutations = {
             })
         })
 
+        clearTimer()
         state.activeGame = shuffle(wordsInGame)
         state.activeGameId = id
         state.lives = 3
         state.foundGroups = 0
         state.gameState = GameState.NotStarted
+        state.timeLeft = 150
+        state.showGroups = false
     },
     startGame (state: State) {
         state.gameState = GameState.Playing
+        startTimer()
+    },
+    decrementTimer (state: State) {
+        if (0 < state.timeLeft) {
+            state.timeLeft--;
+        }
+        if (state.timeLeft <= 0) {
+            state.gameState = GameState.Failed
+            clearTimer()
+        }
     },
     toggleWord (state: State, word: string) {
         const entry = find(state.activeGame, { word })
@@ -110,6 +150,8 @@ const mutations = {
                         state.foundGroups = 4
                         state.activeGame.forEach((word) => word.wordState = WordInGameState.Locked)
                         state.gameState = GameState.Success
+                        state.showGroups = true
+                        clearTimer()
                     }
                 } else {
                     currentGroup.forEach((word) => word.wordState = WordInGameState.Open)
@@ -120,6 +162,7 @@ const mutations = {
 
                         if (state.lives <= 0) {
                             state.gameState = GameState.Failed
+                            clearTimer()
                         }
                     }
                 }
@@ -129,6 +172,10 @@ const mutations = {
                 entry.wordState = WordInGameState.Open;
                 break;
         }
+    },
+    resolveWall (state: State) {
+        state.activeGame.forEach((word) => word.wordState = WordInGameState.Locked)
+        state.showGroups = true
     }
 }
 

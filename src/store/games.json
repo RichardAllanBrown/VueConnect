@@ -8,8 +8,7 @@
             { "connection": "Small amount", "words": [ "Trace", "Morsel", "Smidgen", "Iota" ] },
             { "connection": "End with a silent letter", "words": [ "Coup", "Debris", "Autumn", "Crumb" ] }
         ]
-    },
-    {
+    }, {
         "id": "2",
         "name": "Game 2",
         "groups": [

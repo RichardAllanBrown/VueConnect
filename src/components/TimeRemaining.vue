@@ -1,6 +1,6 @@
 <template>
     <div class="m-4">
-        <span>Time Left</span>
+        <span class="pull-right">Time Left: {{ timeLeft }}</span>
     </div>
 </template>
 
@@ -13,12 +13,10 @@
         setup () {
             const store = useStore()
 
-            const livesLeft = computed(() => store.state.lives)
-            const showLivesLeft = computed(() => store.getters.showLivesLeft)
+            const timeLeft = computed(() => store.state.timeLeft)
 
             return {
-                livesLeft,
-                showLivesLeft,
+                timeLeft,
             }
         }
     })
