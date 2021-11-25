@@ -111,7 +111,7 @@ const mutations = {
         state.lives = 3
         state.foundGroups = 0
         state.gameState = GameState.NotStarted
-        state.timeLeft = 150
+        state.timeLeft = timeLimit
         state.showGroups = false
     },
     startGame (state: State) {
@@ -178,6 +178,8 @@ const mutations = {
         state.showGroups = true
     }
 }
+
+export const timeLimit = 150
 
 export const store = createStore<State>({
     state,
