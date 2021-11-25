@@ -1,7 +1,7 @@
 [
     {
         "id": "1",
-        "name": "Game 1",
+        "name": "Game 1 - Medium",
         "groups": [
             { "connection": "Pork products", "words": [ "Lechon", "Bacon", "Speck", "Prosciutto" ] },
             { "connection": "Terms in backgammon", "words": [ "Bear off", "Gammon", "Pip", "Anchor" ] },
@@ -10,12 +10,57 @@
         ]
     }, {
         "id": "2",
-        "name": "Game 2",
+        "name": "Game 2 - Medium",
         "groups": [
             { "connection": "Terms for Zero", "words": [ "Love", "Goose-Egg", "Zip", "Nil" ] },
             { "connection": "Poker Terms", "words": [ "Crab", "Deuce", "Bullet", "Cowboy" ] },
             { "connection": "Flying ____", "words": [ "Ace", "Buttress", "Fish", "Fox" ] },
             { "connection": "Things made of rubber", "words": [ "Elastic Band", "Squash Ball", "Puck", "Condom" ] }
+        ]
+    }, {
+        "id": "3",
+        "name": "Game 3 - Medium",
+        "groups": [
+            { "connection": "All Kings", "words": [ "Henry", "George", "Cobra", "Kong" ] },
+            { "connection": "Black ____", "words": [ "Garlic", "Sabbath", "Jack", "Plague" ] },
+            { "connection": "____ Arrest", "words": [ "Under", "House", "Citizen", "Cardiac" ] },
+            { "connection": "Dance Crazes", "words": [ "Robot", "Jerk", "Salsa", "Twist" ] }
+        ]
+    }, {
+        "id": "4",
+        "name": "Wall Night Special 1",
+        "groups": [
+            { "connection": "Inanimate horses", "words": [ "Pommel", "Trojan", "Rocking", "Clothes" ] },
+            { "connection": "Falcons", "words": [ "Merlin", "Hobby", "Peregrine", "Kestrel" ] },
+            { "connection": "Parts of a sword", "words": [ "Grip", "Ricasso", "Fuller", "Tang" ] },
+            { "connection": "Female 'Gladiators'", "words": [ "Falcon", "Jet", "Vogue", "Nightshade" ] }
+        ]
+    }, {
+        "id": "5",
+        "name": "Wall Night Special 2",
+        "groups": [
+            { "connection": "Dried meat", "words": [ "Bresaola", "Charqui", "Speck", "Biltong" ] },
+            { "connection": "Small things", "words": [ "Crumb", "Scintilla", "Atom", "Mite" ] },
+            { "connection": "BBC TV channels", "words": [ "Parliament", "News", "Alba", "Four" ] },
+            { "connection": "Represented by 'i'", "words": [ "Iota", "sqrt(-1)", "One", "Interlaced video" ] }
+        ]
+    }, {
+        "id": "6",
+        "name": "Series 16 Final Lion",
+        "groups": [
+            { "connection": "Vitamins", "words": [ "A", "B1", "B12", "E" ] },
+            { "connection": "Chemical symbols with 'wrong' letter", "words": [ "W", "Sb", "Au", "K" ] },
+            { "connection": "Caribbean country codes", "words": [ "BB", "AG", "TT", "JM" ] },
+            { "connection": "Homophones of British rivers", "words": [ "Ts", "D", "X", "Y" ] }
+        ]
+    }, {
+        "id": "6",
+        "name": "Series 16 Final Water",
+        "groups": [
+            { "connection": "US State abbreviations", "words": [ "GA", "TN", "IN", "VA" ] },
+            { "connection": "Netball positions", "words": [ "C", "GD", "GS", "WD" ] },
+            { "connection": "Initials of authors known by initials", "words": [ "AA", "EM", "GK", "VS" ] },
+            { "connection": "Homophones of comedians' surnames", "words": [ "B", "D", "V", "K" ] }
         ]
     }
 ]
