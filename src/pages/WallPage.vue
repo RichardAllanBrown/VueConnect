@@ -54,11 +54,11 @@
 
 <script lang="ts">
     import { defineComponent, computed } from 'vue'
-    import { GameState, useStore } from '../../store'
-    import WallWord from '../WallWord.vue'
-    import LivesCounter from '../LivesCounter.vue'
-    import TimeRemaining from '../TimeRemaining.vue'
-    import WallGroups from '../WallGroups.vue'
+    import { GameState, useStore } from '../store'
+    import WallWord from '../components/WallWord.vue'
+    import LivesCounter from '../components/LivesCounter.vue'
+    import TimeRemaining from '../components/TimeRemaining.vue'
+    import WallGroups from '../components/WallGroups.vue'
 
     export default defineComponent({
         name: 'WallPage',
